@@ -7,8 +7,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('API Documentation')
-    .setDescription('API description')
+    .setTitle('TaskGo API Documentation')
+    .setDescription('This API is a task management system designed to handle user authentication, task creation, updates, and management. It supports CRUD operations for tasks while ensuring security with JWT-based authentication.')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
