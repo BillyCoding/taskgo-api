@@ -43,11 +43,28 @@ export class TaskService {
     return task;
   }
 
-  update(userId: string, id: string, updateTaskDto: UpdateTaskDto) {
-    return `This action updates a #${id} task`;
+  async update(userId: string, id: string, updateTaskDto: UpdateTaskDto) {
+
+    const task = await this.taskRepository.findOne({ where: { user: { id: userId }, id: id } })
+
+    if (!task) throw new NotFoundException('Tarefa não encontrada!');
+
+    Object.assign(task, updateTaskDto)
+
+    await this.taskRepository.save(task)
+
+    return task;
   }
 
-  remove(userId: string, id: string) {
-    return `This action removes a #${id} task`;
+  async remove(userId: string, id: string) {
+
+    const task = await this.taskRepository.findOne({ where: { user: { id: userId }, id: id } })
+
+    if (!task) throw new NotFoundException('Tarefa não encontrada!');
+
+    await this.taskRepository.delete(task?.id)
+
+
+    return `Tarefa deletada com sucesso!`;
   }
 }
