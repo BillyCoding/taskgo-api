@@ -9,11 +9,16 @@ import { UserModule } from './user/user.module';
 import { Task } from './task/entities/task.entity'; // Entidade Task
 import { User } from './user/entities/user.entity'; // Entidade User
 import { LoggerMiddleware } from './middleware/logger.middleware';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'), // Serve a pasta public
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
