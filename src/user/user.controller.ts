@@ -15,7 +15,8 @@ export class UserController {
   }
 
   @Put('me')
-  update(@Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update('', updateUserDto);
+  update(@Req() req, @Body() updateUserDto: UpdateUserDto) {
+    const userId = req.user.userId;
+    return this.userService.update(userId, updateUserDto);
   }
 }
