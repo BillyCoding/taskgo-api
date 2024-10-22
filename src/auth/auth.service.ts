@@ -9,6 +9,11 @@ export class AuthService {
   }
 
   login(loginAuthDto: LoginAuthDto) {
-    return 'This action get a auth user';
+    const mock = {
+      name: "John Doo",
+      email: "johndoo@email.com",
+      token: "Ds8btkOGy9E47bUztVcGk0ijgj2uhsz20SlmcdDi7mXSamDKTFBTOw6ZxTdHmIcg"
+    }
+    return mock;
   }
 }
